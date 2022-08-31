@@ -20,6 +20,9 @@ function darkMode() {
     toggleIcon.children[0].textContent = 'Dark Mode';
     toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
     imageMode('dark');
+    analytics.track('Theme Switched', {
+        theme: 'dark',
+    });
 }
 
 // Light Mode Function
@@ -29,6 +32,9 @@ function lightMode() {
     toggleIcon.children[0].textContent = 'Light Mode';
     toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
     imageMode('light');
+    analytics.track('Theme Switched', {
+        theme: 'light',
+    });
 }
 
 // Switch Theme Function
@@ -56,3 +62,8 @@ if (currentTheme) {
         darkMode();
     }
 }
+
+analytics.page('Page Viewed', {
+    type: 'homepage',
+    theme: currentTheme ? currentTheme : 'No theme selected.'
+});
